@@ -20,16 +20,19 @@ export class SearchBarComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.filterText = params['name'];
-      this.sendFilter(this.filterText);
+      this.sendFilter();
     });
   }
 
-  sendFilter(event: any) {
-    this.router.navigate(['/'], {
+  sendFilter(): void {
+    this.name.emit(this.filterText);
+    this.router.navigate(['/blog'], {
       queryParams: {
-        name: this.filterText
+        name:
+        this.filterText
       }
     });
+
     this.name.emit(this.filterText);
   }
 
